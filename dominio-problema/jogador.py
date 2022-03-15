@@ -1,32 +1,22 @@
 class Jogador():
     def __init__(self):
-        self.nome = None
         self.saldo = None
-        self.apostas = None
-        self.venceuAposta = False
-        self.possuiSaldo = False
-        self.corDaFicha = None
-        self.pontuacao = None
-        self.vencedor = False
-        self.vezDeJogar = False
+        self.habilitadoParaJogar = False
 
-    def checarSaldo(self):
+    def possuiSaldoParaApostaMinima(self, apostaMinima):
         pass
 
-    def registrarAposta(self, posicao, ficha):
+    def pontuar(self, ficha, quantidade):
         pass
 
-    def pontuar(self, pontuacao):
+    def Jogador(self, quantidadesDeFichas):
         pass
 
-    def definirNome(self, nome):
+    def getHabilitadoParaJogar(self):
         pass
 
-    def trocarDeJogador(self):
+    def setHabilitadoParaJogar(self, habilitadoParaJogar):
         pass
 
-    def encerrarPartida(self, jogadores):
-        pass
-
-    def habilitarPrimeiroJogador(self):
+    def obterPontuacao(self, nome):
         pass

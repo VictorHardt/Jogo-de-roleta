@@ -1,40 +1,53 @@
-class GerenciadorDeJogo():
+class GerenciadorDoJogo():
     def __init__(self):
-        self.rodadaEmAndamento = False
-        self.posicoes = None
-        self.posicoesSelecionadas = None
-        self.jogadores = None
-        self.jogadorDaVez = None
-        self.roleta = None
-        self.pontuador = None
-        self.jogoEmAndamento = False
-        self.numeroDeJogadores = None
-        self.apostamaxima = None
         self.caixaInicial = None
+        self.apostaMinima = None
+        self.numeroDeJogadores = None
+        self.jogadores = None
+        self.roleta = None
+        self.jogadorDaVez = None
+        self.mesaDeApostas = None
+        self.quantidadeDeFichas = None
+        self.janelaDoJogo = None
+        self.pontuacoes = None
+        self.estadoDoJogo = None
+        self.casaApostada = None
+        self.numeroDeJogadoresHabilitados = None
+        self.jogadorVencedor = None
+        self.maiorPontuacao = None
 
-    def registrarAposta(self, posicao, ficha):
-        pass
-
-    def iniciarPartida(self, numeroDeJogadores, apostaMaxima, caixaInicial):
-        pass
-
-    def instaciarTabuleiro(self, posicoesFichas, posicoesTabuleiro):
-        pass
-
-    def instanciarJogadores(self, numeroJogadores):
+    def iniciarPartida(self):
         pass
 
     def concluirRodada(self):
         pass
 
-    def pontuarAposta(self):
+    def eliminarJogador(self, jogadores, apostaMinima):
         pass
 
-    def permitirAposta(self):
+    def atualizarJogadorDaVez(self):
         pass
 
-    def pularRodada(self):
+    def selecionarCasaDaAposta(self, casaApostada):
         pass
 
-    def eliminarJogador(self, jogadores, regrasDoJogo):
+    def GerenciadorDoJogo(self, janelaDoJogo, caixaInicial, apostaMinima, numeroDeJogadores):
+        pass
+
+    def gerarQuantidadesDeFichas(self, saldoInicial):
+        pass
+
+    def pontuarAposta(self, numeroDeJogadores, numeroSorteado):
+        pass
+
+    def selecionarFichaDaAposta(self, ficha):
+        pass
+
+    def escolherPularOuApostar(self, apostar):
+        pass
+
+    def novaRodada(self):
+        pass
+
+    def alterarIndiceDoJogadorDaVez(self):
         pass
