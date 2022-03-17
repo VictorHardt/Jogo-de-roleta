@@ -3,13 +3,21 @@ import numpy as np
 
 class ImagemDoJogo:
 
-    def desenhar(self, janela):
+    def desenhar(self, janela, prev_clicked_row, prev_clicked_col, clicked_row, clicked_col, tabuleiro):
         # Variáveis necessárias para desenho da interface gráfica
         LINE_WIDTH = 2
         GREEN = (0, 100, 0)
         BLACK = (0, 0, 0)
         RED = (255, 0, 0)
         WHITE = (255, 255, 255)
+        YELLOW = (255, 255, 0)
+        ORANGE = (255, 165, 0)
+        BLUE = (0, 0, 255)
+        PURPLE = (128, 0, 128)
+        jogadorDaVez = "Vez de: Jogador " + str((tabuleiro.jogadores.index(tabuleiro.jogadorDaVez)) + 1)
+        saldoJogadorDaVez = "Saldo Jogador: " + str(tabuleiro.jogadorDaVez.saldo)
+        numeroSorteado = "Número Sorteado: sem número sorteado"# + str(tabuleiro.jogadorDaVez.roleta)
+
 
         # Definindo o fundo da interface gráfica da cor verde
         janela.fill( GREEN )
@@ -97,6 +105,34 @@ class ImagemDoJogo:
         pygame.draw.rect(janela, BLACK, (786, 502, 55, 98))
         pygame.draw.rect(janela, RED, (786, 602, 55, 98))
 
+        # Desenhando as fichas
+        fichaBranca = pygame.draw.circle(janela, WHITE, (75, 450), 20)
+        fichaAmarela = pygame.draw.circle(janela, YELLOW, (75, 550), 20)
+        fichaLaranja = pygame.draw.circle(janela, ORANGE, (75, 650), 20)
+        fichaAzul = pygame.draw.circle(janela, BLUE, (75, 750), 20)
+        fichaRoxa = pygame.draw.circle(janela, PURPLE, (75, 850), 20)
+
+        if prev_clicked_row == 0 and prev_clicked_col == 0:
+            fichaBranca = pygame.draw.circle(janela, WHITE, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
+
+        if prev_clicked_row == 1 and prev_clicked_col == 0:
+            fichaBranca = pygame.draw.circle(janela, YELLOW, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
+
+        if prev_clicked_row == 2 and prev_clicked_col == 0:
+            fichaBranca = pygame.draw.circle(janela, ORANGE, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
+
+        if prev_clicked_row == 3 and prev_clicked_col == 0:
+            fichaBranca = pygame.draw.circle(janela, BLUE, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
+
+        if prev_clicked_row == 4 and prev_clicked_col == 0:
+            fichaBranca = pygame.draw.circle(janela, PURPLE, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
+        
+        fichaBranca
+        fichaAmarela
+        fichaLaranja
+        fichaAzul
+        fichaRoxa
+
         # Definição da variáveis que fazem parte do tabuleiro (textos)
         font = pygame.font.SysFont( "Arial", 30 )
         zero = font.render("0", True, WHITE)
@@ -146,6 +182,17 @@ class ImagemDoJogo:
         preto = font.render("black", True, WHITE)
         vermelho = font.render("red", True, WHITE)
 
+        cinquenta = font.render("50", True, WHITE)
+        cem = font.render("100", True, WHITE)
+
+        pular = font.render("Pular", True, WHITE)
+        apostar = font.render("Apostar", True, WHITE)
+
+        mostrarJogadorDaVez = font.render(jogadorDaVez, True, WHITE)
+        mostrarSaldoJogadorDaVez = font.render(saldoJogadorDaVez, True, WHITE)
+
+        mostrarNumeroSorteado = font.render(numeroSorteado, True, WHITE)
+
         # Colocação das variáveis (textos) na tela do jogo
         janela.blit( zero, (120, 530) )
         janela.blit( um, (177, 630) )
@@ -193,6 +240,26 @@ class ImagemDoJogo:
         janela.blit( preto, (519, 830) )
         janela.blit( impar, (633, 830) )
         janela.blit( dezenove_trintaseis, (747, 830) )
+
+        # Colocação dos valores das fichas na tela do jogo
+        janela.blit( cinco, (5, 435))
+        janela.blit( dez, (5, 535))
+        janela.blit( vintecinco, (5, 635))
+        janela.blit( cinquenta, (5, 735))
+        janela.blit( cem, (0, 835))
+
+        # Colocação dos botões na tela do jogo
+        janela.blit( pular, (861, 435))
+        janela.blit( apostar, (861, 535))
+
+        # Colocação jogador da vez
+        janela.blit( mostrarJogadorDaVez, (400, 935))
+
+        # Colocação saldo do jogador da vez
+        janela.blit( mostrarSaldoJogadorDaVez, (400, 335))
+
+        # Colocação número sorteado
+        janela.blit( mostrarNumeroSorteado, (300, 235))
 
     def matrizTabuleiro(self):
         # Criação da matriz do tabuleiro com zeros dentro

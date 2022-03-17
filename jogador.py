@@ -1,7 +1,7 @@
 class Jogador():
-    def __init__(self):
-        self.saldo = None
-        self.habilitadoParaJogar = False
+    def __init__(self, saldo, habilitadoParaJogar):
+        self.saldo = saldo
+        self.habilitadoParaJogar = habilitadoParaJogar
 
     def possuiSaldoParaApostaMinima(self, apostaMinima):
         pass
