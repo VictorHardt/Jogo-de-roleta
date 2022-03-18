@@ -1,5 +1,6 @@
 from mesaDeApostas import MesaDeApostas
 from jogador import Jogador
+from roleta import Roleta
 
 class GerenciadorDoJogo():
     def __init__(
@@ -24,7 +25,7 @@ class GerenciadorDoJogo():
         self.apostaMinima = apostaMinima
         self.numeroDeJogadores = numeroDeJogadores
         self.jogadores = jogadores
-        self.roleta = roleta
+        self.roleta = Roleta()
         self.jogadorDaVez = jogadorDaVez
         self.mesaDeApostas = mesaDeApostas
         self.quantidadeDeFichas = quantidadeDeFichas
@@ -61,13 +62,21 @@ class GerenciadorDoJogo():
         self.estadoDoJogo = 1
 
     def concluirRodada(self):
-        pass
+        self.roleta.sortearNumero()
+        self.eliminarJogador()
+        print(self.jogadores)
+        self.jogadorDaVez = self.jogadores[0]
 
-    def eliminarJogador(self, jogadores, apostaMinima):
-        pass
+    def eliminarJogador(self):
+        for jogador in self.jogadores:
+            if jogador.saldo < self.apostaMinima:
+                self.jogadores.remove(jogador)
 
     def atualizarJogadorDaVez(self):
-        pass
+        if self.jogadores.index(self.jogadorDaVez) != ((len(self.jogadores)) - 1):
+            self.jogadorDaVez = self.jogadores[1 + (self.jogadores.index(self.jogadorDaVez))]
+        else: 
+            self.concluirRodada()
 
     def selecionarCasaDaAposta(self, casaApostada):
         pass
@@ -92,8 +101,3 @@ class GerenciadorDoJogo():
 
     def alterarIndiceDoJogadorDaVez(self):
         pass
-
-    # def __repr__(self):
-    #     jgrVez = str((self.jogadores.index(self.jogadorDaVez)) + 1)
-    #     sldJgrVez = str(self.jogadorDaVez.saldo)
-    #     return str(jgrVez) + "," + str(sldJgrVez)

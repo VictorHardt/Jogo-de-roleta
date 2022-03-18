@@ -43,7 +43,6 @@ class JanelaDoJogo:
         # Funções utilizadas no menu de inicialização
         def iniciarPartida():
             self.valueNumeroJogadores = numeroJogadores.get_value()
-            self.valueSaldoInicial = saldoInicial.get_value()
             menu.disable()
 
         def adicionarNumeroJogadores():
@@ -58,15 +57,8 @@ class JanelaDoJogo:
         textNumeroJogadores = menu.add.button("Adicionar número de jogadores", adicionarNumeroJogadores)
         numeroJogadores = menu.add.dropselect("", ["2","3","4","5","6"])
 
-        textSaldoInicial = menu.add.button("Adicionar Saldo Inicial", adicionarSaldoInicial)
-        textDica = menu.add.button("1 -> 100, 5 -> 500, 1 -> 1000", adicionarSaldoInicial)
-        saldoInicial = menu.add.dropselect("", ["100","500","1000"])
-
         textNumeroJogadores
         numeroJogadores
-        textSaldoInicial
-        textDica
-        saldoInicial
         menu.add.button("Iniciar Partida", iniciarPartida)
         menu.add.button("Fechar Jogo", pygame_menu.events.EXIT)
 
@@ -91,12 +83,15 @@ class JanelaDoJogo:
                 self.clicked_row = int((mouseY-400) // 100)
                 self.clicked_col = int((mouseX-43) // 57)
 
+                if self.clicked_row == 0 and self.clicked_col == 14 or self.clicked_col == 15:
+                    self.tabuleiro.atualizarJogadorDaVez()
+
                 print("VocÊ clicou na linha: {0} e na coluna: {1}".format(self.clicked_row, self.clicked_col))
 
     def rodarJogo(self):
         # Aqui ocorre o print da matriz do tabuleiro preenchida com zeros. Apenas para demonstração
         ImagemDoJogo().matrizTabuleiro()
-        self.instanciarTabuleiro(self.valueSaldoInicial, self.valueNumeroJogadores)
+        self.instanciarTabuleiro(self.valueNumeroJogadores)
 
         while self.loop:
             # Aqui é setado o FPS do jogo
@@ -120,9 +115,9 @@ class JanelaDoJogo:
     def solicitarCasaApostada(self):
         pass
 
-    def instanciarTabuleiro(self, caixaInicial, numeroDeJogadores):
+    def instanciarTabuleiro(self, numeroDeJogadores):
         self.tabuleiro.apostaMinima = 5
-        self.tabuleiro.caixaInicial = int(caixaInicial[0])
+        self.tabuleiro.caixaInicial = 500
         self.tabuleiro.numeroDeJogadores = int(numeroDeJogadores[0])
 
         # print(self.tabuleiro)
