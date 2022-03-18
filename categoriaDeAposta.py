@@ -1,17 +1,15 @@
 class CategoriaDeAposta():
-    def __init__(self):
-        self.indicesDosBotoesDaCategoria = None
-        self.peso = None
-        self.numeroValidos = None
+    def __init__(self, indicesDosBotoesDaCategoria, peso, numerosValidos):
+        self.__indicesDosBotoesDaCategoria = indicesDosBotoesDaCategoria
+        self.__peso = peso
+        self.__numerosValidos = numerosValidos
 
     def seEnquadraNaCategoria(self, indiceDoBotaoClicado):
-        pass
+        return indiceDoBotaoClicado in self.__indicesDosBotoesDaCategoria
 
     def getPeso(self):
-        pass
+        return self.__peso
 
-    def getGrupoDeCasas(self):
-        pass
+    def getNumerosValidos(self):
+        return self.__numerosValidos
 
-    def CategoriaDeAposta(self, indiceDosBotoesDaCategoria, peso, numerosValidos):
-        pass
