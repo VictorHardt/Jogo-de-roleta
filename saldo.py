@@ -17,12 +17,6 @@ class Saldo():
             pontuacao += item[0] * item[1]
         return pontuacao
 
-    def possuiFichas(self):
-        for value in self.__fichas.values():
-            if value != 0:
-                return True
-        return False
-
     def adicionarFichas(self, ficha, quantidade):
         self.__fichas[ficha] += quantidade
     
