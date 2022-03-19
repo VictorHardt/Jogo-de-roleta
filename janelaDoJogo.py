@@ -18,23 +18,6 @@ class JanelaDoJogo:
         pygame.init()
         self.janela = pygame.display.set_mode([x, y])
         self.titulo = pygame.display.set_caption(titulo)
-        self.tabuleiro = GerenciadorDoJogo(
-            None, 
-            None, 
-            None, 
-            [None], 
-            None, 
-            None, 
-            None, 
-            None, 
-            None, 
-            None, 
-            None, 
-            None, 
-            None, 
-            None, 
-            None, 
-        )
         self.loop = True
 
         self.menu(self.janela)
@@ -116,10 +99,5 @@ class JanelaDoJogo:
         pass
 
     def instanciarTabuleiro(self, numeroDeJogadores):
-        self.tabuleiro.apostaMinima = 5
-        self.tabuleiro.caixaInicial = 500
-        self.tabuleiro.numeroDeJogadores = int(numeroDeJogadores[0])
-
-        # print(self.tabuleiro)
-
+        self.tabuleiro = GerenciadorDoJogo(self, int(numeroDeJogadores[0]))
         self.tabuleiro.iniciarPartida()

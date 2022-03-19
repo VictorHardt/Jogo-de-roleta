@@ -8,6 +8,6 @@ class Roleta():
     def sortearNumero(self):
         self.__ultimoNumeroSorteado = random.randint(self.__posicoes[0],
             self.__posicoes[len(self.__posicoes) - 1])
-    
+
     def getUltimoNumeroSorteado(self):
         return self.__ultimoNumeroSorteado

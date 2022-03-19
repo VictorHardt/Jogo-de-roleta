@@ -3,80 +3,64 @@ from jogador import Jogador
 from roleta import Roleta
 
 class GerenciadorDoJogo():
-    def __init__(
-        self, 
-        caixaInicial,
-        apostaMinima,
-        numeroDeJogadores,
-        jogadores,
-        roleta,
-        jogadorDaVez,
-        mesaDeApostas,
-        quantidadeDeFichas,
-        janelaDoJogo,
-        pontuacoes,
-        estadoDoJogo,
-        casaApostada,
-        numeroDeJogadoresHabilitados,
-        jogadorVencedor,
-        maiorPontuacao
-        ):
-        self.caixaInicial = caixaInicial
-        self.apostaMinima = apostaMinima
-        self.numeroDeJogadores = numeroDeJogadores
-        self.jogadores = jogadores
-        self.roleta = Roleta()
-        self.jogadorDaVez = jogadorDaVez
-        self.mesaDeApostas = mesaDeApostas
-        self.quantidadeDeFichas = quantidadeDeFichas
-        self.janelaDoJogo = janelaDoJogo
-        self.pontuacoes = pontuacoes
-        self.estadoDoJogo = estadoDoJogo
-        self.casaApostada = casaApostada
-        self.numeroDeJogadoresHabilitados = numeroDeJogadoresHabilitados
-        self.jogadorVencedor = jogadorVencedor
-        self.maiorPontuacao = maiorPontuacao
+    def __init__(self, janelaDoJogo, numeroDeJogadores):
+        self.__apostaMinima = 5
+        self.__numeroDeJogadores = numeroDeJogadores
+        self.__jogadores = []
+        self.__roleta = Roleta()
+        self.__jogadorDaVez = 0
+        self.__mesaDeApostas = MesaDeApostas()
+        self.__janelaDoJogo = janelaDoJogo
+        self.__pontuacoes = []
+        self.__estadoDoJogo = 0
+        self.__casaApostada = 0
+        self.__numeroDeJogadoresHabilitados = numeroDeJogadores
+        self.__jogadorVencedor = 0
+        self.__maiorPontuacao = 0
+
+    def getJogadorDaVez(self):
+        return self.__jogadorDaVez
+
+    def getUltimoNumeroSorteado(self):
+        return self.__roleta.getUltimoNumeroSorteado()
+
+    def getSaldoDoJogadorAtual(self):
+        if self.__jogadores:
+            return self.__jogadores[self.__jogadorDaVez].getFichas()
+        return {}
 
     def iniciarPartida(self):
-        print(self.numeroDeJogadores)
-        print(self.apostaMinima)
-        print(self.caixaInicial)
-
-        self.jogadores.remove(None)
 
         # instanciar mesa de apostas
-        # self.mesaDeApostas = MesaDeApostas()
+        self.__mesaDeApostas = MesaDeApostas()
 
         # self.quantidadeDeFichas = self.gerarQuantidadesDeFichas(self.caixaInicial)
 
         # Instanciando jogadores e adicionando na lista de jogadores
-        for i in range(self.numeroDeJogadores):
-            self.jogadores.append(Jogador())
+        for i in range(self.__numeroDeJogadores):
+            self.__jogadores.append(Jogador())
 
         # Definindo primeiro jogador a jogar
-        self.jogadorDaVez = self.jogadores[0]
+        self.__jogadorDaVez = 0
 
-        print(self.jogadores)
-        print(self.jogadorDaVez)
-
-        self.estadoDoJogo = 1
+        self.__estadoDoJogo = 1
 
     def concluirRodada(self):
-        self.roleta.sortearNumero()
+        self.__roleta.sortearNumero()
         self.eliminarJogador()
-        print(self.jogadores)
-        self.jogadorDaVez = self.jogadores[0]
+        # self.__jogadorDaVez = self.__jogadores[0]
 
     def eliminarJogador(self):
-        for jogador in self.jogadores:
-            if jogador.saldo < self.apostaMinima:
-                self.jogadores.remove(jogador)
+        for jogador in self.__jogadores:
+            if jogador.saldo < self.__apostaMinima:
+                self.__jogadores.remove(jogador)
 
     def atualizarJogadorDaVez(self):
-        if self.jogadores.index(self.jogadorDaVez) != ((len(self.jogadores)) - 1):
-            self.jogadorDaVez = self.jogadores[1 + (self.jogadores.index(self.jogadorDaVez))]
-        else: 
-            self.concluirRodada()
+        # if self.__jogadores.index(self.__jogadorDaVez) != ((len(self.__jogadores)) - 1):
+            # self.__jogadorDaVez = self.__jogadores[1 + (self.__jogadores.index(self.__jogadorDaVez))]
+        # else: 
+            # self.concluirRodada()
+        pass
 
     def selecionarCasaDaAposta(self, casaApostada):
         pass
@@ -91,7 +75,7 @@ class GerenciadorDoJogo():
         pass
 
     def escolherPularOuApostar(self):
-        print("Escolher pular ou apostar!")
+        pass
 
     def novaRodada(self):
         pass

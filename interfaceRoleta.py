@@ -24,7 +24,6 @@ pygame.display.set_caption( 'Jogo de roleta' )
 
 #board
 board = np.zeros( (BOARD_ROWS, BOARD_COLS) )
-print(board)
 
 #Texts
 font = pygame.font.SysFont( "Arial", 30 )
@@ -204,8 +203,6 @@ while True:
             clicked_row = int((mouseY-400) // 100)
             clicked_col = int((mouseX-100) // 57)
 
-            # print(clicked_row)
-            # print(clicked_col)
             print("VocÊ clicou na linha: {0} e na coluna: {1}".format(clicked_row, clicked_col))
 
     #Texto na tela

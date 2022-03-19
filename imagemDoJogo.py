@@ -14,9 +14,9 @@ class ImagemDoJogo:
         ORANGE = (255, 165, 0)
         BLUE = (0, 0, 255)
         PURPLE = (128, 0, 128)
-        jogadorDaVez = "Vez de: Jogador " + str((tabuleiro.jogadores.index(tabuleiro.jogadorDaVez)) + 1)
-        saldoJogadorDaVez = "Saldo Jogador: " + str(tabuleiro.jogadorDaVez.getFichas())
-        numeroSorteado = "Número Sorteado: " + str(tabuleiro.roleta.getUltimoNumeroSorteado())
+        jogadorDaVez = "Vez de: Jogador " + str(tabuleiro.getJogadorDaVez())
+        saldoJogadorDaVez = "Saldo Jogador: " + str(tabuleiro.getSaldoDoJogadorAtual())
+        numeroSorteado = "Número Sorteado: " + str(tabuleiro.getUltimoNumeroSorteado())
 
 
         # Definindo o fundo da interface gráfica da cor verde
@@ -266,4 +266,3 @@ class ImagemDoJogo:
         BOARD_ROWS = 6
         BOARD_COLS = 15
         board = np.zeros( (BOARD_ROWS, BOARD_COLS) )
-        print(board)
