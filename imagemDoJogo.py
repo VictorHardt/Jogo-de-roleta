@@ -111,21 +111,6 @@ class ImagemDoJogo:
         fichaLaranja = pygame.draw.circle(janela, ORANGE, (75, 650), 20)
         fichaAzul = pygame.draw.circle(janela, BLUE, (75, 750), 20)
         fichaRoxa = pygame.draw.circle(janela, PURPLE, (75, 850), 20)
-
-        if prev_clicked_row == 0 and prev_clicked_col == 0:
-            fichaBranca = pygame.draw.circle(janela, WHITE, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
-
-        if prev_clicked_row == 1 and prev_clicked_col == 0:
-            fichaBranca = pygame.draw.circle(janela, YELLOW, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
-
-        if prev_clicked_row == 2 and prev_clicked_col == 0:
-            fichaBranca = pygame.draw.circle(janela, ORANGE, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
-
-        if prev_clicked_row == 3 and prev_clicked_col == 0:
-            fichaBranca = pygame.draw.circle(janela, BLUE, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
-
-        if prev_clicked_row == 4 and prev_clicked_col == 0:
-            fichaBranca = pygame.draw.circle(janela, PURPLE, (75+(57*clicked_col), 450+(100*clicked_row)), 20)
         
         fichaBranca
         fichaAmarela
