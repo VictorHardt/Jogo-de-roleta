@@ -70,11 +70,12 @@ class JanelaDoJogo:
                     self.tabuleiro.atualizarJogadorDaVez()
 
                 print("VocÊ clicou na linha: {0} e na coluna: {1}".format(self.clicked_row, self.clicked_col))
-
+                self.tabuleiro.clique(self.clicked_col, self.clicked_col)
     def rodarJogo(self):
         # Aqui ocorre o print da matriz do tabuleiro preenchida com zeros. Apenas para demonstração
         ImagemDoJogo().matrizTabuleiro()
-        self.instanciarTabuleiro(self.valueNumeroJogadores)
+        self.tabuleiro = GerenciadorDoJogo(self, int(self.valueNumeroJogadores[0]))
+        # self.tabuleiro.iniciarPartida()
 
         while self.loop:
             # Aqui é setado o FPS do jogo
@@ -84,20 +85,20 @@ class JanelaDoJogo:
             pygame.display.update()
 
     def exibirNumeroSorteadoEPontuacoes(self, numeroSorteado, pontuacao):
-        pass
+        print('numeroSorteado', numeroSorteado)
+        print('pontuacao', pontuacao)
+
+    def esconderNumeroSorteadoEPontuacoes():
+        print('esconderNumeroSorteadoEPontuacoes')
 
     def exibirVencedor(self, vencedor):
-        pass
+        print(vencedor)
 
     def solicitarPularOuApostar(self):
-        pass
+        print('solicitarPularOuApostar')
 
     def solicitarFichaApostada(self):
-        pass
+        print('solicitarFichaApostada')
 
     def solicitarCasaApostada(self):
-        pass
-
-    def instanciarTabuleiro(self, numeroDeJogadores):
-        self.tabuleiro = GerenciadorDoJogo(self, int(numeroDeJogadores[0]))
-        self.tabuleiro.iniciarPartida()
+        print('solicitarCasaApostada')
