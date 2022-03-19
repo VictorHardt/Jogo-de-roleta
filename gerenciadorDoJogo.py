@@ -4,7 +4,7 @@ from roleta import Roleta
 
 class GerenciadorDoJogo():
     def __init__(self, janelaDoJogo, numeroDeJogadores):
-        self.__apostaMinima = 5
+        self.__apostaMinima = 400
         self.__numeroDeJogadores = numeroDeJogadores
         self.__jogadores = []
         self.__roleta = Roleta()
@@ -42,14 +42,17 @@ class GerenciadorDoJogo():
         for aposta in apostas:
             pontuacao = aposta.calcularPontuacao(self.__roleta.getUltimoNumeroSorteado())
             jogador = aposta.getJogadorQueEfetuou()
-            self.__jogadores[jogador].pontuar(pontuacao[0], pontuacao[1])
+            if pontuacao[0]:
+                self.__jogadores[jogador].pontuar(pontuacao[0], pontuacao[1])
             pontuacoes[jogador] = pontuacao
         return pontuacoes
 
     def concluirRodada(self):
+        print('concluirRodada')
         self.__roleta.sortearNumero()
         self.__pontuacoes = self.pontuarApostas()
-        self.__janelaDoJogo.exibirNumeroSorteadoEPontuacoes(self.__pontuacoes)
+        self.__janelaDoJogo.exibirNumeroSorteadoEPontuacoes(self.__roleta.getUltimoNumeroSorteado(),
+            self.__pontuacoes)
         numeroDeJogadoresHabilitados = 0
         for jogador in self.__jogadores:
             if not jogador.possuiSaldoParaApostaMinima(self.__apostaMinima):
@@ -57,24 +60,23 @@ class GerenciadorDoJogo():
             else:
                 numeroDeJogadoresHabilitados+=1
         if numeroDeJogadoresHabilitados <= 1:
+            print('a')
             self.__estadoDoJogo = 5
             maiorPontuacao = 0
             vencedor = 0
-            for i in range(self.__jogadores):
+            for i in range(len(self.__jogadores)):
                 pontuacao = jogador.obterPontuacao()
                 if pontuacao > maiorPontuacao:
                     maiorPontuacao = pontuacao
                     vencedor = i
-            self.__mesaDeApostas.exibirVencedor(vencedor)
+            self.__janelaDoJogo.exibirVencedor(vencedor)
         else:
+            print('b')
             self.__estadoDoJogo = 4
-
-    def eliminarJogador(self):
-        for jogador in self.__jogadores:
-            if jogador.saldo < self.__apostaMinima:
-                self.__jogadores.remove(jogador)
+        print(self.__estadoDoJogo)
 
     def atualizarJogadorDaVez(self):
+        print('atualizarJogadorDaVez')
         if self.__jogadorDaVez == len(self.__jogadores) - 1:
             self.concluirRodada()
             self.__estadoDoJogo = 4
@@ -82,33 +84,47 @@ class GerenciadorDoJogo():
             self.alterarIndiceDoJogadorDaVez()
             while self.__jogadores[self.__jogadorDaVez].getPerdeuAPartida():
                 self.alterarIndiceDoJogadorDaVez()
-            self.__estadoDoJogo = 2
+            self.__estadoDoJogo = 1
             self.__janelaDoJogo.solicitarPularOuApostar()
 
     def clique(self, linha, coluna):
         print('self.__estadoDoJogo',self.__estadoDoJogo)
         botaoClicado = self.__janelaDoJogo.traduzirLinhaEColunaParaBotao(linha, coluna)
         if self.__estadoDoJogo == 1:
-            # self.escolherPularOuApostar(True)
-            pass
+            if botaoClicado == 52:
+                self.escolherPularOuApostar(True)
+            elif botaoClicado == 51:
+                self.escolherPularOuApostar(False)
         elif self.__estadoDoJogo == 2:
-            self.selecionarCasaDaAposta(38)
+            if botaoClicado in list(range(0, 46)):
+                self.selecionarCasaDaAposta(botaoClicado)
         elif self.__estadoDoJogo == 3:
-            self.selecionarFichaDaAposta(5)
+            if botaoClicado in list(range(46,51)):
+                mapFichas = {
+                    46: 5,
+                    47: 10,
+                    48: 25,
+                    49: 50,
+                    50: 100
+                }
+                self.selecionarFichaDaAposta(mapFichas[botaoClicado])
         elif self.__estadoDoJogo == 4:
             self.novaRodada()
 
     def selecionarCasaDaAposta(self, casaApostada):
+        print('selecionarCasaDaAposta', casaApostada)
         self.__casaApostada = casaApostada
         self.__estadoDoJogo = 3
         self.__janelaDoJogo.solicitarFichaApostada()
 
     def selecionarFichaDaAposta(self, ficha):
+        print('selecionarFichaDaAposta', ficha)
         self.__mesaDeApostas.realizarAposta(self.__jogadorDaVez, self.__casaApostada, ficha)
         self.__jogadores[self.__jogadorDaVez].subtrairFicha(ficha)
         self.atualizarJogadorDaVez()
 
     def escolherPularOuApostar(self, apostar):
+        print('escolherPularOuApostar', apostar)
         if apostar:
             self.__janelaDoJogo.solicitarCasaApostada()
             self.__estadoDoJogo = 2
@@ -116,13 +132,15 @@ class GerenciadorDoJogo():
             self.atualizarJogadorDaVez()
 
     def novaRodada(self):
+        print('novaRodada')
         self.__janelaDoJogo.esconderNumeroSorteadoEPontuacoes()
-        self.__mesaDeApostas.getApostas([])
+        self.__mesaDeApostas.getApostas()
         self.alterarIndiceDoJogadorDaVez()
         self.__estadoDoJogo = 1
         self.__janelaDoJogo.solicitarPularOuApostar()
 
     def alterarIndiceDoJogadorDaVez(self):
+        print('alterarIndiceDoJogadorDaVez')
         if (self.__jogadorDaVez < self.__numeroDeJogadores - 1):
             self.__jogadorDaVez += 1
         else:

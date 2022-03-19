@@ -256,10 +256,10 @@ class ImagemDoJogo:
         janela.blit( mostrarJogadorDaVez, (400, 935))
 
         # Colocação saldo do jogador da vez
-        janela.blit( mostrarSaldoJogadorDaVez, (400, 335))
+        janela.blit( mostrarSaldoJogadorDaVez, (20, 335))
 
         # Colocação número sorteado
-        janela.blit( mostrarNumeroSorteado, (300, 235))
+        janela.blit( mostrarNumeroSorteado, (20, 235))
 
     def matrizTabuleiro(self):
         # Criação da matriz do tabuleiro com zeros dentro

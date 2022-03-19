@@ -104,13 +104,12 @@ class JanelaDoJogo:
         for botao, posicoesValidas in self.__mapeamentoLinhasEColunasParaBotoes.items():
             if linha in posicoesValidas['linhas'] and coluna in posicoesValidas['colunas']:
                 return botao
-            
+
     def inicializar(self, x, y, titulo):
         pygame.init()
         self.janela = pygame.display.set_mode([x, y])
         self.titulo = pygame.display.set_caption(titulo)
         self.loop = True
-
         self.menu(self.janela)
 
     def menu(self, janela):
@@ -120,9 +119,6 @@ class JanelaDoJogo:
             menu.disable()
 
         def adicionarNumeroJogadores():
-            pass
-
-        def adicionarSaldoInicial():
             pass
 
         # Inicialização do menu inicial do jogo
@@ -157,11 +153,9 @@ class JanelaDoJogo:
                 self.clicked_row = int((mouseY-400) // 100)
                 self.clicked_col = int((mouseX-43) // 57)
 
-                if self.clicked_row == 0 and self.clicked_col == 14 or self.clicked_col == 15:
-                    self.tabuleiro.atualizarJogadorDaVez()
-
                 print("VocÊ clicou na linha: {0} e na coluna: {1}".format(self.clicked_row, self.clicked_col))
                 self.tabuleiro.clique(self.clicked_row, self.clicked_col)
+    
     def rodarJogo(self):
         # Aqui ocorre o print da matriz do tabuleiro preenchida com zeros. Apenas para demonstração
         ImagemDoJogo().matrizTabuleiro()
@@ -179,11 +173,11 @@ class JanelaDoJogo:
         print('numeroSorteado', numeroSorteado)
         print('pontuacao', pontuacao)
 
-    def esconderNumeroSorteadoEPontuacoes():
+    def esconderNumeroSorteadoEPontuacoes(self):
         print('esconderNumeroSorteadoEPontuacoes')
 
     def exibirVencedor(self, vencedor):
-        print(vencedor)
+        print('exibirVencedor',vencedor)
 
     def solicitarPularOuApostar(self):
         print('solicitarPularOuApostar')
