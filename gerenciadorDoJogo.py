@@ -87,10 +87,10 @@ class GerenciadorDoJogo():
 
     def clique(self, linha, coluna):
         print('self.__estadoDoJogo',self.__estadoDoJogo)
-        if self.__estadoDoJogo == 0:
-            self.iniciarPartida()
-        elif self.__estadoDoJogo == 1:
-            self.escolherPularOuApostar(True)
+        botaoClicado = self.__janelaDoJogo.traduzirLinhaEColunaParaBotao(linha, coluna)
+        if self.__estadoDoJogo == 1:
+            # self.escolherPularOuApostar(True)
+            pass
         elif self.__estadoDoJogo == 2:
             self.selecionarCasaDaAposta(38)
         elif self.__estadoDoJogo == 3:

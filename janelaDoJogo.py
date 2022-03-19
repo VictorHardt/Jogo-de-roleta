@@ -13,7 +13,98 @@ class JanelaDoJogo:
         self.clicked_col = None
         self.prev_clicked_row = None
         self.prev_clicked_col = None
+        self.__mapeamentoLinhasEColunasParaBotoes = self.gerarMapeamentoLinhasEColunasParaBotoes()
 
+    def gerarMapeamentoLinhasEColunasParaBotoes(self):
+        mapeamento = { # a chave é o índice do botão
+            0: { # 0
+                'linhas': list(range(0,3)),
+                'colunas': [1]
+            },
+            37: { # 1st12
+                'linhas': [3],
+                'colunas': list(range(2,6))
+            },
+            38 : { # 2st12
+                'linhas': [3],
+                'colunas': list(range(6,10))
+            },
+            39: { # 3st12
+                'linhas': [3],
+                'colunas': list(range(10,14))
+            },
+            40: { #1-18
+                'linhas': [4],
+                'colunas': list(range(2,4))
+            },
+            41: { #par
+                'linhas': [4],
+                'colunas': list(range(4,6))
+            },
+            42: { #red
+                'linhas': [4],
+                'colunas': list(range(6,8))
+            },
+            43: { #black
+                'linhas': [4],
+                'colunas': list(range(8,10))
+            },
+            44: { #ímpar
+                'linhas': [4],
+                'colunas': list(range(10,12))
+            },
+            45: { #19-36
+                'linhas': [4],
+                'colunas': list(range(12,14))
+            },
+            46: { #ficha 5
+                'linhas': [0],
+                'colunas': [0]
+            },
+            47: { #ficha 10
+                'linhas': [1],
+                'colunas': [0]
+            },
+            48: { #ficha 25
+                'linhas': [2],
+                'colunas': [0]
+            },
+            49: { #ficha 50
+                'linhas': [3],
+                'colunas': [0]
+            },
+            50: { #ficha 100
+                'linhas': [4],
+                'colunas': [0]
+            },
+            51 :{ # 'pular'
+                'linhas': [0],
+                'colunas': list(range(14,17))
+            },
+            52 : { # apostar
+                'linhas': [1],
+                'colunas': list(range(14,17))
+            }
+        }
+        contador = 1
+        coluna = 2
+        linha = 2
+        while contador <= 36:
+            for coluna in range(2, 14):
+                for linha in range(2,-1,-1):
+                    mapeamento[contador] = {
+                        'linhas': [linha],
+                        'colunas': [coluna]
+                    }
+                    linha-=1
+                    contador+=1
+        return mapeamento
+    
+    def traduzirLinhaEColunaParaBotao(self, linha, coluna):
+        for botao, posicoesValidas in self.__mapeamentoLinhasEColunasParaBotoes.items():
+            if linha in posicoesValidas['linhas'] and coluna in posicoesValidas['colunas']:
+                return botao
+            
     def inicializar(self, x, y, titulo):
         pygame.init()
         self.janela = pygame.display.set_mode([x, y])
@@ -70,12 +161,12 @@ class JanelaDoJogo:
                     self.tabuleiro.atualizarJogadorDaVez()
 
                 print("VocÊ clicou na linha: {0} e na coluna: {1}".format(self.clicked_row, self.clicked_col))
-                self.tabuleiro.clique(self.clicked_col, self.clicked_col)
+                self.tabuleiro.clique(self.clicked_row, self.clicked_col)
     def rodarJogo(self):
         # Aqui ocorre o print da matriz do tabuleiro preenchida com zeros. Apenas para demonstração
         ImagemDoJogo().matrizTabuleiro()
         self.tabuleiro = GerenciadorDoJogo(self, int(self.valueNumeroJogadores[0]))
-        # self.tabuleiro.iniciarPartida()
+        self.tabuleiro.iniciarPartida()
 
         while self.loop:
             # Aqui é setado o FPS do jogo
