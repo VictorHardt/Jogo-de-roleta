@@ -6,7 +6,9 @@ class Aposta():
         self.__jogadorQueEfetuou = jogadorQueEfetuou
 
     def calcularPontuacao(self, numeroSorteado):
-        pass
+        if numeroSorteado in self.__posicaoOuGrupoApostado:
+            return self.__peso * self.__fichaApostada
+        return 0
 
     def getJogadorQueEfetuou(self):
-        pass
+        return self.__jogadorQueEfetuou
