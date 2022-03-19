@@ -15,7 +15,7 @@ class ImagemDoJogo:
         BLUE = (0, 0, 255)
         PURPLE = (128, 0, 128)
         jogadorDaVez = "Vez de: Jogador " + str((tabuleiro.jogadores.index(tabuleiro.jogadorDaVez)) + 1)
-        saldoJogadorDaVez = "Saldo Jogador: " + str(tabuleiro.jogadorDaVez.getSaldo())
+        saldoJogadorDaVez = "Saldo Jogador: " + str(tabuleiro.jogadorDaVez.getFichas())
         numeroSorteado = "Número Sorteado: " + str(tabuleiro.roleta.ultimoNumeroSorteado)
 
 

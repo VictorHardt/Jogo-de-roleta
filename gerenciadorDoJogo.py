@@ -81,9 +81,6 @@ class GerenciadorDoJogo():
     def selecionarCasaDaAposta(self, casaApostada):
         pass
 
-    def GerenciadorDoJogo(self, janelaDoJogo, caixaInicial, apostaMinima, numeroDeJogadores):
-        pass
-
     def gerarQuantidadesDeFichas(self, saldoInicial):
         pass
 
