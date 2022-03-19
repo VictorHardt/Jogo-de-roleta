@@ -51,7 +51,7 @@ class GerenciadorDoJogo():
 
         # Instanciando jogadores e adicionando na lista de jogadores
         for i in range(self.numeroDeJogadores):
-            self.jogadores.append(Jogador(self.caixaInicial, False))
+            self.jogadores.append(Jogador())
 
         # Definindo primeiro jogador a jogar
         self.jogadorDaVez = self.jogadores[0]
