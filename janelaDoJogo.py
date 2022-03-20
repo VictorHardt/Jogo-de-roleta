@@ -9,10 +9,10 @@ class JanelaDoJogo:
 
     def __init__(self, x, y, titulo):
         self.inicializar(x, y, titulo)
-        self.clicked_row = None
-        self.clicked_col = None
-        self.prev_clicked_row = None
-        self.prev_clicked_col = None
+        self.__clicked_row = None
+        self.__clicked_col = None
+        self.__prev_clicked_row = None
+        self.__prev_clicked_col = None
         self.__mapeamentoLinhasEColunasParaBotoes = self.gerarMapeamentoLinhasEColunasParaBotoes()
         self.__instrucao = "Selecione pular ou apostar"
         self.__numeroSorteado = "Ainda não foi sorteado um número"
@@ -138,7 +138,7 @@ class JanelaDoJogo:
         menu.mainloop(janela)
 
     def desenhar(self):
-        self.imagemDoJogo.desenhar(self.janela, self.prev_clicked_row, self.prev_clicked_col, self.clicked_row, self.clicked_col, self.tabuleiro, self.__instrucao, self.__numeroSorteado, self.__pontuacao)
+        self.imagemDoJogo.desenhar(self.janela, self.__prev_clicked_row, self.__prev_clicked_col, self.__clicked_row, self.__clicked_col, self.tabuleiro, self.__instrucao, self.__numeroSorteado, self.__pontuacao)
 
     def lidarComEventos(self):
         for event in pygame.event.get():
@@ -146,18 +146,18 @@ class JanelaDoJogo:
                 sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                self.prev_clicked_row = self.clicked_row
+                self.__prev_clicked_row = self.__clicked_row
 
-                self.prev_clicked_col = self.clicked_col
+                self.__prev_clicked_col = self.__clicked_col
 
                 mouseX = event.pos[0]
                 mouseY = event.pos[1]
 
-                self.clicked_row = int((mouseY-400) // 100)
-                self.clicked_col = int((mouseX-43) // 57)
+                self.__clicked_row = int((mouseY-400) // 100)
+                self.__clicked_col = int((mouseX-43) // 57)
 
-                print("VocÊ clicou na linha: {0} e na coluna: {1}".format(self.clicked_row, self.clicked_col))
-                self.tabuleiro.clique(self.clicked_row, self.clicked_col)
+                print("VocÊ clicou na linha: {0} e na coluna: {1}".format(self.__clicked_row, self.__clicked_col))
+                self.tabuleiro.clique(self.__clicked_row, self.__clicked_col)
     
     def rodarJogo(self):
         # Aqui ocorre o print da matriz do tabuleiro preenchida com zeros. Apenas para demonstração
