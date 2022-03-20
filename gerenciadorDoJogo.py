@@ -41,10 +41,12 @@ class GerenciadorDoJogo():
         for aposta in apostas:
             pontuacao = aposta.calcularPontuacao(self.__roleta.getUltimoNumeroSorteado())
             print("Pontuação" + str(pontuacao))
+            jogador = aposta.getJogadorQueEfetuou()
             if pontuacao[0]:
-                jogador = aposta.getJogadorQueEfetuou()
                 self.__jogadores[jogador].pontuar(pontuacao[0], pontuacao[1])
-            # pontuacoes[jogador] = pontuacao
+                pontuacoes[f"Jogador {jogador}"] = pontuacao[0] * (pontuacao[1] - 1)
+            else:
+                pontuacoes[f"Jogador {jogador}"] = 0
         self.__mesaDeApostas.deleteApostas()
         return pontuacoes
 
