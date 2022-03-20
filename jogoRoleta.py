@@ -6,6 +6,6 @@ from janelaDoJogo import JanelaDoJogo
 class JogoRoleta:
 
     def __init__(self):
-        self.interfaceDeJogador = JanelaDoJogo(1000, 1000, "Roleta")
+        self.__interfaceDeJogador = JanelaDoJogo(1000, 1000, "Roleta")
 
-JogoRoleta().interfaceDeJogador.rodarJogo()
+JogoRoleta().__interfaceDeJogador.rodarJogo()
