@@ -11,12 +11,8 @@ class GerenciadorDoJogo():
         self.__jogadorDaVez = 0
         self.__mesaDeApostas = MesaDeApostas()
         self.__janelaDoJogo = janelaDoJogo
-        self.__pontuacoes = []
         self.__estadoDoJogo = 0
         self.__casaApostada = 0
-        self.__numeroDeJogadoresHabilitados = numeroDeJogadores
-        self.__jogadorVencedor = 0
-        self.__maiorPontuacao = 0
 
     def getJogadorDaVez(self):
         return self.__jogadorDaVez
@@ -53,11 +49,11 @@ class GerenciadorDoJogo():
 
     def concluirRodada(self):
         self.__roleta.sortearNumero()
-        self.__pontuacoes = self.pontuarApostas()
+        pontuacoes = self.pontuarApostas()
         for jogador in self.__jogadores:
             print("Fichas jogador " + str(self.__jogadores.index(jogador)) + " " + str(jogador.getFichas()))
         self.__janelaDoJogo.exibirNumeroSorteadoEPontuacoes(self.__roleta.getUltimoNumeroSorteado(),
-            self.__pontuacoes)
+            pontuacoes)
         numeroDeJogadoresHabilitados = 0
         for jogador in self.__jogadores:
             if not jogador.possuiSaldoParaApostaMinima(self.__apostaMinima):
