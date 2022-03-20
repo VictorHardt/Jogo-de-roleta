@@ -67,11 +67,11 @@ class GerenciadorDoJogo():
             self.__estadoDoJogo = 5
             maiorPontuacao = 0
             vencedor = 0
-            for i in range(len(self.__jogadores)):
+            for jogador in self.__jogadores:
                 pontuacao = jogador.obterPontuacao()
                 if pontuacao > maiorPontuacao:
                     maiorPontuacao = pontuacao
-                    vencedor = i
+                    vencedor = self.__jogadores.index(jogador)
             self.__janelaDoJogo.exibirVencedor(vencedor)
         else:
             self.__estadoDoJogo = 4

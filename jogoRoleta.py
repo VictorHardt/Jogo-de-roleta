@@ -8,4 +8,7 @@ class JogoRoleta:
     def __init__(self):
         self.__interfaceDeJogador = JanelaDoJogo(1000, 1000, "Roleta")
 
-JogoRoleta().__interfaceDeJogador.rodarJogo()
+    def getInterfaceDeJogador(self):
+        return self.__interfaceDeJogador
+
+JogoRoleta().getInterfaceDeJogador().rodarJogo()
