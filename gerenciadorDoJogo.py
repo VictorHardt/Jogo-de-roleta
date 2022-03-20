@@ -5,7 +5,7 @@ import pyautogui as pag
 
 class GerenciadorDoJogo():
     def __init__(self, janelaDoJogo, numeroDeJogadores):
-        self.__apostaMinima = 100
+        self.__apostaMinima = 300
         self.__numeroDeJogadores = numeroDeJogadores
         self.__jogadores = []
         self.__roleta = Roleta()
@@ -58,7 +58,7 @@ class GerenciadorDoJogo():
         numeroDeJogadoresHabilitados = 0
         for jogador in self.__jogadores:
             if not jogador.possuiSaldoParaApostaMinima(self.__apostaMinima):
-                self.__jogadores[self.__jogadorDaVez].setPerdeuAPartida(True)
+                jogador.setPerdeuAPartida(True)
             else:
                 numeroDeJogadoresHabilitados+=1
         if numeroDeJogadoresHabilitados <= 1:
@@ -140,3 +140,6 @@ class GerenciadorDoJogo():
             self.__jogadorDaVez += 1
         else:
             self.__jogadorDaVez = 0
+            while self.__jogadores[self.__jogadorDaVez].getPerdeuAPartida():
+                self.alterarIndiceDoJogadorDaVez()
+            
