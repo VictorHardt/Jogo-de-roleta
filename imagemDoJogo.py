@@ -3,7 +3,7 @@ import numpy as np
 
 class ImagemDoJogo:
 
-    def desenhar(self, janela, prev_clicked_row, prev_clicked_col, clicked_row, clicked_col, tabuleiro):
+    def desenhar(self, janela, prev_clicked_row, prev_clicked_col, clicked_row, clicked_col, tabuleiro, instrucao, numeroSorteado, pontuacao):
         # Variáveis necessárias para desenho da interface gráfica
         LINE_WIDTH = 2
         GREEN = (0, 100, 0)
@@ -16,7 +16,6 @@ class ImagemDoJogo:
         PURPLE = (128, 0, 128)
         jogadorDaVez = "Vez de: Jogador " + str(tabuleiro.getJogadorDaVez())
         saldoJogadorDaVez = "Saldo Jogador: " + str(tabuleiro.getSaldoDoJogadorAtual())
-        numeroSorteado = "Número Sorteado: " + str(tabuleiro.getUltimoNumeroSorteado())
 
 
         # Definindo o fundo da interface gráfica da cor verde
@@ -176,7 +175,15 @@ class ImagemDoJogo:
         mostrarJogadorDaVez = font.render(jogadorDaVez, True, WHITE)
         mostrarSaldoJogadorDaVez = font.render(saldoJogadorDaVez, True, WHITE)
 
-        mostrarNumeroSorteado = font.render(numeroSorteado, True, WHITE)
+        mostrarNumeroSorteado = font.render("Número sorteado: " + str(numeroSorteado), True, WHITE)
+
+        # Desenhando as pontuações da última rodada
+        mostrarPontuacao = font.render("Pontuações da última rodada: " + str(pontuacao), True, WHITE)
+        janela.blit( mostrarPontuacao, (20, 135))
+
+        # Desenhando as instruções do jogo
+        instrucoes = font.render(instrucao, True, WHITE)
+        janela.blit( instrucoes, (20, 35))
 
         # Colocação das variáveis (textos) na tela do jogo
         janela.blit( zero, (120, 530) )

@@ -14,6 +14,9 @@ class JanelaDoJogo:
         self.prev_clicked_row = None
         self.prev_clicked_col = None
         self.__mapeamentoLinhasEColunasParaBotoes = self.gerarMapeamentoLinhasEColunasParaBotoes()
+        self.__instrucao = "Selecione pular ou apostar"
+        self.__numeroSorteado = "Ainda não foi sorteado um número"
+        self.__pontuacao = "Sem pontuações"
 
     def gerarMapeamentoLinhasEColunasParaBotoes(self):
         mapeamento = { # a chave é o índice do botão
@@ -135,7 +138,7 @@ class JanelaDoJogo:
         menu.mainloop(janela)
 
     def desenhar(self):
-        ImagemDoJogo().desenhar(self.janela, self.prev_clicked_row, self.prev_clicked_col, self.clicked_row, self.clicked_col, self.tabuleiro)
+        self.imagemDoJogo.desenhar(self.janela, self.prev_clicked_row, self.prev_clicked_col, self.clicked_row, self.clicked_col, self.tabuleiro, self.__instrucao, self.__numeroSorteado, self.__pontuacao)
 
     def lidarComEventos(self):
         for event in pygame.event.get():
@@ -161,6 +164,7 @@ class JanelaDoJogo:
         ImagemDoJogo().matrizTabuleiro()
         self.tabuleiro = GerenciadorDoJogo(self, int(self.valueNumeroJogadores[0]))
         self.tabuleiro.iniciarPartida()
+        self.imagemDoJogo = ImagemDoJogo()
 
         while self.loop:
             # Aqui é setado o FPS do jogo
@@ -170,20 +174,28 @@ class JanelaDoJogo:
             pygame.display.update()
 
     def exibirNumeroSorteadoEPontuacoes(self, numeroSorteado, pontuacao):
+        self.__numeroSorteado = numeroSorteado
+        self.__pontuacao = pontuacao
         print('numeroSorteado', numeroSorteado)
         print('pontuacao', pontuacao)
 
     def esconderNumeroSorteadoEPontuacoes(self):
+        self.__numeroSorteado = "Ainda não foi sorteado um número"
+        self.__pontuacao = "Sem pontuações"
         print('esconderNumeroSorteadoEPontuacoes')
 
     def exibirVencedor(self, vencedor):
+        self.__instrucao = "Fim de jogo! Jogador vencedor: " + str(vencedor)
         print('exibirVencedor',vencedor)
 
     def solicitarPularOuApostar(self):
+        self.__instrucao = "Selecione pular ou apostar"
         print('solicitarPularOuApostar')
 
     def solicitarFichaApostada(self):
+        self.__instrucao = "Selecione uma ficha para apostar"
         print('solicitarFichaApostada')
 
     def solicitarCasaApostada(self):
+        self.__instrucao = "Selecione uma posição no tabuleiro para posicionar sua aposta"
         print('solicitarCasaApostada')
