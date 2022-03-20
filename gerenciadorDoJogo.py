@@ -1,6 +1,7 @@
 from mesaDeApostas import MesaDeApostas
 from jogador import Jogador
 from roleta import Roleta
+import pyautogui as pag
 
 class GerenciadorDoJogo():
     def __init__(self, janelaDoJogo, numeroDeJogadores):
@@ -116,6 +117,8 @@ class GerenciadorDoJogo():
         if self.__jogadores[self.__jogadorDaVez].getFicha(ficha) > 0:
             self.__mesaDeApostas.realizarAposta(self.__jogadorDaVez, self.__casaApostada, ficha)
             self.__jogadores[self.__jogadorDaVez].subtrairFicha(ficha)
+        else:
+            pag.alert(text="A aposta não foi concretizada porque você não possui fichas suficientes", title="Aposta não concretizada")
         self.atualizarJogadorDaVez()
 
     def escolherPularOuApostar(self, apostar):
