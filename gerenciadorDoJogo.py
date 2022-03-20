@@ -47,7 +47,7 @@ class GerenciadorDoJogo():
                 pontuacoes[f"Jogador {jogador}"] = pontuacao[0] * (pontuacao[1] - 1)
             else:
                 pontuacoes[f"Jogador {jogador}"] = 0
-        self.__mesaDeApostas.deleteApostas()
+        self.__mesaDeApostas.setApostas([])
         return pontuacoes
 
     def concluirRodada(self):

@@ -50,7 +50,3 @@ class MesaDeApostas():
 
     def setApostas(self, apostas):
         self.__apostas = apostas
-
-    def deleteApostas(self):
-        self.__apostas = []
-
