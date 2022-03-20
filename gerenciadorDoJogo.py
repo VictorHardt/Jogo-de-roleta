@@ -4,7 +4,7 @@ from roleta import Roleta
 
 class GerenciadorDoJogo():
     def __init__(self, janelaDoJogo, numeroDeJogadores):
-        self.__apostaMinima = 400
+        self.__apostaMinima = 100
         self.__numeroDeJogadores = numeroDeJogadores
         self.__jogadores = []
         self.__roleta = Roleta()
@@ -37,18 +37,25 @@ class GerenciadorDoJogo():
 
     def pontuarApostas(self):
         apostas = self.__mesaDeApostas.getApostas()
+        print("Apostas" + str(apostas))
+        for jogador in self.__jogadores:
+            print("Fichas jogador " + str(self.__jogadores.index(jogador)) + " " + str(jogador.getFichas()))
         pontuacoes = {}
         for aposta in apostas:
             pontuacao = aposta.calcularPontuacao(self.__roleta.getUltimoNumeroSorteado())
+            print("Pontuação" + str(pontuacao))
             if pontuacao[0]:
                 jogador = aposta.getJogadorQueEfetuou()
                 self.__jogadores[jogador].pontuar(pontuacao[0], pontuacao[1])
-            pontuacoes[jogador] = pontuacao
+            # pontuacoes[jogador] = pontuacao
+        self.__mesaDeApostas.deleteApostas()
         return pontuacoes
 
     def concluirRodada(self):
         self.__roleta.sortearNumero()
         self.__pontuacoes = self.pontuarApostas()
+        for jogador in self.__jogadores:
+            print("Fichas jogador " + str(self.__jogadores.index(jogador)) + " " + str(jogador.getFichas()))
         self.__janelaDoJogo.exibirNumeroSorteadoEPontuacoes(self.__roleta.getUltimoNumeroSorteado(),
             self.__pontuacoes)
         numeroDeJogadoresHabilitados = 0
@@ -109,8 +116,10 @@ class GerenciadorDoJogo():
         self.__janelaDoJogo.solicitarFichaApostada()
 
     def selecionarFichaDaAposta(self, ficha):
-        self.__mesaDeApostas.realizarAposta(self.__jogadorDaVez, self.__casaApostada, ficha)
-        self.__jogadores[self.__jogadorDaVez].subtrairFicha(ficha)
+        print(self.__jogadores[self.__jogadorDaVez].getFicha(ficha))
+        if self.__jogadores[self.__jogadorDaVez].getFicha(ficha) > 0:
+            self.__mesaDeApostas.realizarAposta(self.__jogadorDaVez, self.__casaApostada, ficha)
+            self.__jogadores[self.__jogadorDaVez].subtrairFicha(ficha)
         self.atualizarJogadorDaVez()
 
     def escolherPularOuApostar(self, apostar):

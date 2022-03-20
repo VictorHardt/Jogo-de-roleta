@@ -22,3 +22,6 @@ class Saldo():
     
     def subtrairFicha(self, ficha):
         self.__fichas[ficha] -= 1
+
+    def getFicha(self, ficha):
+        return self.__fichas[ficha]

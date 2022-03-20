@@ -25,3 +25,6 @@ class Jogador():
 
     def subtrairFicha(self, ficha):
         self.__saldo.subtrairFicha(ficha)
+
+    def getFicha(self, ficha):
+        return self.__saldo.getFicha(ficha)
