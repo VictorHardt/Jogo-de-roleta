@@ -203,8 +203,6 @@ while True:
             clicked_row = int((mouseY-400) // 100)
             clicked_col = int((mouseX-100) // 57)
 
-            print("VocÊ clicou na linha: {0} e na coluna: {1}".format(clicked_row, clicked_col))
-
     #Texto na tela
     screen.blit( zero, (120, 530) )
     screen.blit( um, (177, 630) )

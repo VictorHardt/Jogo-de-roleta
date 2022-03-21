@@ -151,7 +151,6 @@ class JanelaDoJogo:
                 self.__clicked_row = int((mouseY-400) // 100)
                 self.__clicked_col = int((mouseX-43) // 57)
 
-                print("VocÊ clicou na linha: {0} e na coluna: {1}".format(self.__clicked_row, self.__clicked_col))
                 self.tabuleiro.clique(self.__clicked_row, self.__clicked_col)
     
     def rodarJogo(self):
@@ -170,26 +169,19 @@ class JanelaDoJogo:
     def exibirNumeroSorteadoEPontuacoes(self, numeroSorteado, pontuacao):
         self.__numeroSorteado = numeroSorteado
         self.__pontuacao = pontuacao
-        print('numeroSorteado', numeroSorteado)
-        print('pontuacao', pontuacao)
 
     def esconderNumeroSorteadoEPontuacoes(self):
         self.__numeroSorteado = "Ainda não foi sorteado um número"
         self.__pontuacao = "Sem pontuações"
-        print('esconderNumeroSorteadoEPontuacoes')
 
     def exibirVencedor(self, vencedor):
         self.__instrucao = "Fim de jogo! Jogador vencedor: " + str(vencedor)
-        print('exibirVencedor',vencedor)
 
     def solicitarPularOuApostar(self):
         self.__instrucao = "Selecione pular ou apostar"
-        print('solicitarPularOuApostar')
 
     def solicitarFichaApostada(self):
         self.__instrucao = "Selecione uma ficha para apostar"
-        print('solicitarFichaApostada')
 
     def solicitarCasaApostada(self):
         self.__instrucao = "Selecione uma posição no tabuleiro para posicionar sua aposta"
-        print('solicitarCasaApostada')

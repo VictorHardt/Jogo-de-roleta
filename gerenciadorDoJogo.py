@@ -34,13 +34,9 @@ class GerenciadorDoJogo():
 
     def pontuarApostas(self):
         apostas = self.__mesaDeApostas.getApostas()
-        print("Apostas" + str(apostas))
-        for jogador in self.__jogadores:
-            print("Fichas jogador " + str(self.__jogadores.index(jogador)) + " " + str(jogador.getFichas()))
         pontuacoes = {}
         for aposta in apostas:
             pontuacao = aposta.calcularPontuacao(self.__roleta.getUltimoNumeroSorteado())
-            print("Pontuação" + str(pontuacao))
             jogador = aposta.getJogadorQueEfetuou()
             if pontuacao[0]:
                 self.__jogadores[jogador].pontuar(pontuacao[0], pontuacao[1])
@@ -53,8 +49,6 @@ class GerenciadorDoJogo():
     def concluirRodada(self):
         self.__roleta.sortearNumero()
         pontuacoes = self.pontuarApostas()
-        for jogador in self.__jogadores:
-            print("Fichas jogador " + str(self.__jogadores.index(jogador)) + " " + str(jogador.getFichas()))
         self.__janelaDoJogo.exibirNumeroSorteadoEPontuacoes(self.__roleta.getUltimoNumeroSorteado(),
             pontuacoes)
         numeroDeJogadoresHabilitados = 0
@@ -115,7 +109,6 @@ class GerenciadorDoJogo():
         self.__janelaDoJogo.solicitarFichaApostada()
 
     def selecionarFichaDaAposta(self, ficha):
-        print(self.__jogadores[self.__jogadorDaVez].getFicha(ficha))
         if self.__jogadores[self.__jogadorDaVez].getFicha(ficha) > 0:
             self.__mesaDeApostas.realizarAposta(self.__jogadorDaVez, self.__casaApostada, ficha)
             self.__jogadores[self.__jogadorDaVez].subtrairFicha(ficha)
