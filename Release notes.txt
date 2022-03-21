@@ -1,3 +1,8 @@
+Dependências:
+monitor com resolução mínima 1000 x 1000
+python3
+instalar libs do arquivo requirements.txt
+
 Como instalar as dependências:
 pip install -r requirements.txt
 
