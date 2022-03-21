@@ -125,7 +125,6 @@ class GerenciadorDoJogo():
 
     def novaRodada(self):
         self.__janelaDoJogo.esconderNumeroSorteadoEPontuacoes()
-        self.__mesaDeApostas.getApostas()
         self.alterarIndiceDoJogadorDaVez()
         self.__estadoDoJogo = 1
         self.__janelaDoJogo.solicitarPularOuApostar()
