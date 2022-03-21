@@ -11,8 +11,6 @@ class JanelaDoJogo:
         self.inicializar(x, y, titulo)
         self.__clicked_row = None
         self.__clicked_col = None
-        self.__prev_clicked_row = None
-        self.__prev_clicked_col = None
         self.__mapeamentoLinhasEColunasParaBotoes = self.gerarMapeamentoLinhasEColunasParaBotoes()
         self.__instrucao = "Selecione pular ou apostar"
         self.__numeroSorteado = "Ainda não foi sorteado um número"
@@ -138,7 +136,7 @@ class JanelaDoJogo:
         menu.mainloop(janela)
 
     def desenhar(self):
-        self.imagemDoJogo.desenhar(self.janela, self.__prev_clicked_row, self.__prev_clicked_col, self.__clicked_row, self.__clicked_col, self.tabuleiro, self.__instrucao, self.__numeroSorteado, self.__pontuacao)
+        self.imagemDoJogo.desenhar(self.janela, self.tabuleiro, self.__instrucao, self.__numeroSorteado, self.__pontuacao)
 
     def lidarComEventos(self):
         for event in pygame.event.get():
@@ -146,9 +144,6 @@ class JanelaDoJogo:
                 sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                self.__prev_clicked_row = self.__clicked_row
-
-                self.__prev_clicked_col = self.__clicked_col
 
                 mouseX = event.pos[0]
                 mouseY = event.pos[1]
@@ -161,7 +156,6 @@ class JanelaDoJogo:
     
     def rodarJogo(self):
         # Aqui ocorre o print da matriz do tabuleiro preenchida com zeros. Apenas para demonstração
-        ImagemDoJogo().matrizTabuleiro()
         self.tabuleiro = GerenciadorDoJogo(self, int(self.valueNumeroJogadores[0]))
         self.tabuleiro.iniciarPartida()
         self.imagemDoJogo = ImagemDoJogo()

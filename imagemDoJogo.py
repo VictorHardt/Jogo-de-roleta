@@ -3,7 +3,7 @@ import numpy as np
 
 class ImagemDoJogo:
 
-    def desenhar(self, janela, prev_clicked_row, prev_clicked_col, clicked_row, clicked_col, tabuleiro, instrucao, numeroSorteado, pontuacao):
+    def desenhar(self, janela, tabuleiro, instrucao, numeroSorteado, pontuacao):
         # Variáveis necessárias para desenho da interface gráfica
         LINE_WIDTH = 2
         GREEN = (0, 100, 0)
@@ -252,9 +252,3 @@ class ImagemDoJogo:
 
         # Colocação número sorteado
         janela.blit( mostrarNumeroSorteado, (20, 235))
-
-    def matrizTabuleiro(self):
-        # Criação da matriz do tabuleiro com zeros dentro
-        BOARD_ROWS = 6
-        BOARD_COLS = 15
-        board = np.zeros( (BOARD_ROWS, BOARD_COLS) )

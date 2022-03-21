@@ -5,7 +5,7 @@ import pyautogui as pag
 
 class GerenciadorDoJogo():
     def __init__(self, janelaDoJogo, numeroDeJogadores):
-        self.__apostaMinima = 300
+        self.__apostaMinima = 100
         self.__numeroDeJogadores = numeroDeJogadores
         self.__jogadores = []
         self.__roleta = Roleta()
