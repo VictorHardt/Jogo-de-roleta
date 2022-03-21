@@ -1,0 +1,5 @@
+Como instalar as dependências:
+pip install -r requirements.txt
+
+Como iniciar o jogo:
+python3 jogoRoleta.py
